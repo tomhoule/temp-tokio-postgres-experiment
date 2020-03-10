@@ -14,18 +14,18 @@ async fn main() -> anyhow::Result<()> {
         }
     });
 
-    client.execute("DROP TABLE IF EXISTS withuuid", &[]).await?;
-    client.execute("CREATE TABLE IF NOT EXISTS withuuid (u uuid, n int)", &[]).await?;
+    client.execute("DROP TABLE IF EXISTS withinterval", &[]).await?;
+    client.execute("CREATE TABLE IF NOT EXISTS withinterval (u interval, n int)", &[]).await?;
 
     dbg!("got here");
 
     let stmt = client.prepare
-        ("INSERT INTO \"withuuid\" (\"u\", \"n\") VALUES ($1, $2)")
+        ("INSERT INTO \"withinterval\" (\"u\", \"n\") VALUES ($1, $2)")
         .await?;
 
     dbg!("prepared");
 
-    let rows = client.execute(&stmt, &[&uuid, &3i32]).await?;
+    let rows = client.execute(&stmt, &[&"3 hours", &3i32]).await?;
 
     // let rows = client
     //     .query("INSERT INTO \"withuuid\" (\"u\", \"n\") SELECT text($1), $2", &[&uuid, &3i32])
