@@ -1,0 +1,13 @@
+[package]
+name = "tokio-postgres-experiment"
+version = "0.1.0"
+authors = ["Tom Houlé <tom@tomhoule.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio-postgres = { version = "0.5.3", features = ["with-uuid-0_8"] }
+anyhow = "1.0.26"
+uuid = { version = "0.8.1", features = ["v4"] }
+tokio = { version = "0.2.13", features = ["full"] }
